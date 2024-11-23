@@ -7,16 +7,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #556B2F;
-            color: #F0E68C;
+            background-color: #f0f8ff;
+            color: #333;
             padding: 20px;
         }
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #3B5323;
+            background-color: #e6f7ff;
             border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         label {
             display: block;
@@ -26,17 +27,20 @@
             width: 100%;
             padding: 8px;
             margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         .button {
             padding: 10px 20px;
-            background-color: #F0E68C;
-            color: #3B5323;
+            background-color: #4caf50;
+            color: white;
             border: none;
             cursor: pointer;
             font-size: 16px;
+            border-radius: 4px;
         }
         .button:hover {
-            background-color: #D2B48C;
+            background-color: #45a049;
         }
         .result {
             margin-top: 20px;
@@ -49,22 +53,22 @@
         <h1>遺產稅快速計算器</h1>
         <form id="taxForm">
             <label>免稅額</label>
-            <input type="radio" name="exemption" value="1200" checked> 一般民眾 (1,200 萬元)<br>
-            <input type="radio" name="exemption" value="2400"> 軍公教人員 (2,400 萬元)<br><br>
+            <input type="radio" name="exemption" value="1333" checked> 一般民眾 (1,333 萬元)<br>
+            <input type="radio" name="exemption" value="2666"> 軍公教人員 (2,666 萬元)<br><br>
 
-            <label for="spouse">配偶扣除額 (每人 445 萬元)</label>
+            <label for="spouse">配偶扣除額 (每人 553 萬元)</label>
             <input type="number" id="spouse" placeholder="輸入配偶人數" min="0">
 
-            <label for="parent">父母扣除額 (每人 111 萬元)</label>
+            <label for="parent">父母扣除額 (每人 138 萬元)</label>
             <input type="number" id="parent" placeholder="輸入父母人數" min="0">
 
-            <label for="children">直系血親卑親屬扣除額 (每人 45 萬元)</label>
+            <label for="children">直系血親卑親屬扣除額 (每人 56 萬元)</label>
             <input type="number" id="children" placeholder="輸入子女人數" min="0">
 
-            <label for="siblings">受撫養親人扣除額 (每人 45 萬元)</label>
+            <label for="siblings">受被繼承人扶養之兄弟姊妹、祖父母 (每人 56 萬元)</label>
             <input type="number" id="siblings" placeholder="輸入撫養親人人數" min="0">
 
-            <label for="disabled">殘障特別扣除額 (每人 57 萬元)</label>
+            <label for="disabled">重度以上身心障礙 (每人 693 萬元)</label>
             <input type="number" id="disabled" placeholder="輸入殘障人數" min="0">
 
             <label for="funeral">喪葬費扣除額 (111 萬元)</label>
@@ -94,7 +98,7 @@
             const necessities = document.getElementById('necessities').checked ? 80 : 0;
             const tools = document.getElementById('tools').checked ? 45 : 0;
 
-            const total = exemption + (spouse * 445) + (parent * 111) + (children * 45) + (siblings * 45) + (disabled * 57) + funeral + necessities + tools;
+            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools;
 
             document.getElementById('totalAmount').textContent = total;
         }
