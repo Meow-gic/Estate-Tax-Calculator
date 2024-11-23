@@ -25,15 +25,13 @@
             display: block;
             margin-bottom: 8px;
         }
-        input[type="number"], input[type="radio"], input[type="checkbox"] {
+        input[type="number"], input[type="checkbox"] {
+            width: 100%;
             padding: 8px;
             margin-bottom: 16px;
-            border: none;
-            outline: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             box-sizing: border-box;
-            appearance: none; /* 移除預設樣式 */
-            -webkit-appearance: none; /* 移除Safari預設樣式 */
-            -moz-appearance: none; /* 移除Firefox預設樣式 */
         }
         .radio-label {
             width: auto;
@@ -44,11 +42,8 @@
         input[type="radio"] {
             width: auto;
             padding: 0;
-            border: none;
+            border: none; /* 隱藏外框線 */
             outline: none;
-            appearance: radio;
-            -webkit-appearance: radio;
-            -moz-appearance: radio;
         }
         .button {
             padding: 10px 20px;
