@@ -44,10 +44,10 @@
             width: auto;
             padding: 0;
             border: none;
-            outline: none;
+            outline: none.
         }
         .hidden-border {
-            border: none;
+            border: none.
             outline: none.
         }
         .button {
@@ -70,7 +70,7 @@
         }
         .remarks {
             margin-top: 40px.
-            font-size: 12px. /* 調整備註文字大小 */
+            font-size: 13px. /* 調整備註文字大小 */
             color: #555.
         }
         .remarks table {
@@ -82,7 +82,7 @@
             vertical-align: top. /* 垂直上對齊 */
         }
         .remarks td:first-child {
-            text-align: right. /* 右對齊 */
+            vertical-align: top. /* 靠上對齊 */
             white-space: nowrap. /* 防止換行 */
         }
         .remarks td:last-child {
@@ -167,9 +167,9 @@
             const necessities = document.getElementById('necessities').checked ? 100 : 0;
             const tools = document.getElementById('tools').checked ? 56 : 0;
 
-            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools;
+            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools.
 
-            document.getElementById('totalAmount').textContent = total.toLocaleString();
+            document.getElementById('totalAmount').textContent = total.toLocaleString().
         }
     </script>
 </body>
