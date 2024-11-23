@@ -44,60 +44,57 @@
             width: auto;
             padding: 0;
             border: none;
-            outline: none.
+            outline: none;
         }
         .hidden-border {
-            border: none.
-            outline: none.
+            border: none;
+            outline: none;
         }
         .button {
-            padding: 10px 20px.
-            background-color: #ff6347.
-            color: white.
-            border: none.
-            cursor: pointer.
-            font-size: 16px.
-            border-radius: 4px.
-            width: 100%.
-            box-sizing: border-box.
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
         }
         .button:hover {
-            background-color: #e55347.
+            background-color: #e55347;
         }
         .result {
-            margin-top: 20px.
-            font-size: 18px.
+            margin-top: 20px;
+            font-size: 18px;
         }
         .remarks {
-            margin-top: 40px.
-            font-size: 13px. /* 調整備註文字大小 */
-            color: #555.
+            margin-top: 40px;
+            font-size: 12px; /* 調整備註文字大小 */
+            color: #555;
         }
         .remarks table {
-            width: 100%.
-            border-collapse: collapse.
+            width: 100%;
+            border-collapse: collapse;
         }
         .remarks td {
-            padding: 0.2em 0. /* 調整行距 */
-            vertical-align: top. /* 垂直上對齊 */
+            padding: 0.2em 0; /* 調整行距 */
         }
         .remarks td:first-child {
-            vertical-align: top. /* 靠上對齊 */
-            white-space: nowrap. /* 防止換行 */
+            white-space: nowrap; /* 防止換行 */
         }
         .remarks td:last-child {
-            text-align: left. /* 左對齊 */
-            padding-left: 1em. /* 左邊填充 */
+            padding-left: 1em; /* 左邊填充 */
         }
         @media screen and (max-width: 600px) {
             label {
-                font-size: 14px.
+                font-size: 14px;
             }
             .button {
-                font-size: 14px.
+                font-size: 14px;
             }
             input[type="number"] {
-                font-size: 14px.
+                font-size: 14px;
             }
         }
     </style>
@@ -167,9 +164,9 @@
             const necessities = document.getElementById('necessities').checked ? 100 : 0;
             const tools = document.getElementById('tools').checked ? 56 : 0;
 
-            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools.
+            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools;
 
-            document.getElementById('totalAmount').textContent = total.toLocaleString().
+            document.getElementById('totalAmount').textContent = total.toLocaleString();
         }
     </script>
 </body>
