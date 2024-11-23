@@ -24,7 +24,7 @@
             margin-bottom: 8px;
         }
         input[type="number"] {
-            width: 100%;
+            width: 50%;
             padding: 8px;
             margin-bottom: 16px;
             border: 1px solid #ccc;
@@ -71,14 +71,14 @@
             <label for="disabled">重度以上身心障礙 (每人 693 萬元)</label>
             <input type="number" id="disabled" placeholder="輸入殘障人數" min="0">
 
-            <label for="funeral">喪葬費扣除額 (111 萬元)</label>
             <input type="checkbox" id="funeral">
+<label for="funeral">喪葬費扣除額 (138 萬元)</label>
 
-            <label for="necessities">被繼承人日常生活必需品及用品 (80 萬元)</label>
             <input type="checkbox" id="necessities">
+<label for="necessities">被繼承人日常生活必需品及用品 (100 萬元)</label>
 
-            <label for="tools">被繼承人之職業上工具 (45 萬元)</label>
             <input type="checkbox" id="tools">
+<label for="tools">被繼承人之職業上工具 (56 萬元)</label>
 
             <button type="button" class="button" onclick="calculateTax()">計算總金額</button>
         </form>
@@ -94,9 +94,9 @@
             const children = parseInt(document.getElementById('children').value) || 0;
             const siblings = parseInt(document.getElementById('siblings').value) || 0;
             const disabled = parseInt(document.getElementById('disabled').value) || 0;
-            const funeral = document.getElementById('funeral').checked ? 111 : 0;
-            const necessities = document.getElementById('necessities').checked ? 80 : 0;
-            const tools = document.getElementById('tools').checked ? 45 : 0;
+            const funeral = document.getElementById('funeral').checked ? 138 : 0;
+            const necessities = document.getElementById('necessities').checked ? 100 : 0;
+            const tools = document.getElementById('tools').checked ? 56 : 0;
 
             const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools;
 
