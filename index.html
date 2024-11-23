@@ -25,23 +25,13 @@
             display: block;
             margin-bottom: 8px;
         }
-        input[type="number"] {
+        input[type="number"], input[type="radio"] {
             width: 100%;
             padding: 8px;
             margin-bottom: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-        }
-        .radio-label {
-            margin-bottom: 0;
-            display: inline-block;
-        }
-        input[type="radio"] {
-            width: auto;
-            padding: 0;
-            border: none;
-            outline: none;
         }
         .button {
             padding: 10px 20px;
@@ -79,11 +69,11 @@
         <h1>遺產稅快速計算器</h1>
         <form id="taxForm">
             <label>免稅額</label>
-            <label class="radio-label"><input type="radio" name="exemption" value="1333" checked> 一般民眾 (1,333 萬元)</label>
-            <label class="radio-label"><input type="radio" name="exemption" value="2666"> 軍公教人員 (2,666 萬元)</label><br><br>
+            <label for="exemption"><input type="radio" name="exemption" value="1333" checked> 一般民眾 (1,333 萬元)</label>
+            <label for="exemption"><input type="radio" name="exemption" value="2666"> 軍公教人員 (2,666 萬元)</label><br><br>
 
             <label for="spouse">配偶扣除額 (每人 553 萬元)</label>
-            <input type="number" id="spouse" placeholder="輸入配偶人數" min="0">
+            <input type="number" id="spouse" placeholder="輸入配偶人數" min="0" max="1">
 
             <label for="parent">父母扣除額 (每人 138 萬元)</label>
             <input type="number" id="parent" placeholder="輸入父母人數" min="0">
@@ -101,7 +91,7 @@
 
             <label for="necessities"><input type="checkbox" id="necessities"> 被繼承人日常生活必需品及用品 (100 萬元)</label>
 
-            <label for="tools"><input type="checkbox" id="tools"> 被繼承人之職業上工具 (56 萬元)</label>
+            <label for="tools"><input type="checkbox" id="tools"> 被繼承人之職業上工具 (56 萬元)</label><br>
 
             <button type="button" class="button" onclick="calculateTax()">計算總金額</button>
         </form>
