@@ -1,221 +1,153 @@
-import { useState } from 'react';
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>遺產稅快速計算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 100%;
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="number"], .radio-label {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .radio-label {
+            width: auto;
+            padding: 0;
+            margin-bottom: 0;
+            display: inline-block;
+            margin-right: 15px; /* 增加間距 */
+        }
+        input[type="radio"] {
+            width: auto;
+            padding: 0;
+            border: none;
+            outline: none;
+        }
+        .hidden-border {
+            border: none;
+            outline: none;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .button:hover {
+            background-color: #e55347;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .remarks {
+            margin-top: 40px;
+            font-size: 12px; /* 調整備註文字大小 */
+            color: #555;
+        }
+        .remarks p {
+            margin-bottom: 0.2em; /* 調整行距 */
+        }
+        @media screen and (max-width: 600px) {
+            label {
+                font-size: 14px;
+            }
+            .button {
+                font-size: 14px;
+            }
+            input[type="number"] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>遺產稅快速計算器</h1>
+        <form id="taxForm">
+            <label>免稅額</label>
+            <label class="radio-label hidden-border"><input type="radio" name="exemption" value="1333" checked> 一般民眾 (1,333 萬元)</label>
+            <label class="radio-label hidden-border"><input type="radio" name="exemption" value="2666"> 軍公教人員 (2,666 萬元)</label><br><br> <!-- 增加下方空行 -->
 
-const EstateTaxCalculator = () => {
-  const [formData, setFormData] = useState({
-    exemption: '1333',
-    spouse: '',
-    parent: '',
-    children: '',
-    siblings: '',
-    disabled: '',
-    funeral: false,
-    necessities: false,
-    tools: false
-  });
-  
-  const [total, setTotal] = useState(0);
+            <label for="spouse">配偶扣除額 (每人 553 萬元)</label>
+            <input type="number" id="spouse" placeholder="輸入配偶人數" min="0" max="1">
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
+            <label for="parent">父母扣除額 (每人 138 萬元)</label>
+            <input type="number" id="parent" placeholder="輸入父母人數" min="0">
 
-  const calculateTax = () => {
-    const calculation = 
-      parseInt(formData.exemption) +
-      (parseInt(formData.spouse) || 0) * 553 +
-      (parseInt(formData.parent) || 0) * 138 +
-      (parseInt(formData.children) || 0) * 56 +
-      (parseInt(formData.siblings) || 0) * 56 +
-      (parseInt(formData.disabled) || 0) * 693 +
-      (formData.funeral ? 138 : 0) +
-      (formData.necessities ? 100 : 0) +
-      (formData.tools ? 56 : 0);
-    
-    setTotal(calculation);
-  };
+            <label for="children">直系血親卑親屬扣除額 (每人 56 萬元)</label>
+            <input type="number" id="children" placeholder="輸入子女人數" min="0">
 
-  return (
-    <Card className="w-full max-w-2xl mx-auto bg-white">
-      <CardHeader>
-        <CardTitle className="text-xl font-bold">遺產稅快速計算器</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">免稅額</label>
-            <div className="flex flex-col space-y-2">
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="exemption"
-                  value="1333"
-                  checked={formData.exemption === '1333'}
-                  onChange={handleInputChange}
-                  className="mr-2"
-                />
-                <span className="text-sm">一般民眾 (1,333 萬元)</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="exemption"
-                  value="2666"
-                  checked={formData.exemption === '2666'}
-                  onChange={handleInputChange}
-                  className="mr-2"
-                />
-                <span className="text-sm">軍公教人員 (2,666 萬元)</span>
-              </label>
-            </div>
-          </div>
+            <label for="siblings">受被繼承人扶養之兄弟姊妹、祖父母 (每人 56 萬元)</label>
+            <input type="number" id="siblings" placeholder="輸入撫養親人人數" min="0">
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">
-              配偶扣除額 (每人 553 萬元)
-            </label>
-            <input
-              type="number"
-              name="spouse"
-              value={formData.spouse}
-              onChange={handleInputChange}
-              min="0"
-              max="1"
-              className="w-full p-2 border rounded"
-              placeholder="輸入配偶人數"
-            />
-          </div>
+            <label for="disabled">重度以上身心障礙 (每人 693 萬元)</label>
+            <input type="number" id="disabled" placeholder="輸入殘障人數" min="0">
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">
-              父母扣除額 (每人 138 萬元)
-            </label>
-            <input
-              type="number"
-              name="parent"
-              value={formData.parent}
-              onChange={handleInputChange}
-              min="0"
-              className="w-full p-2 border rounded"
-              placeholder="輸入父母人數"
-            />
-          </div>
+            <label for="funeral"><input type="checkbox" id="funeral"> 喪葬費扣除額 (138 萬元)</label>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">
-              直系血親卑親屬扣除額 (每人 56 萬元)
-            </label>
-            <input
-              type="number"
-              name="children"
-              value={formData.children}
-              onChange={handleInputChange}
-              min="0"
-              className="w-full p-2 border rounded"
-              placeholder="輸入子女人數"
-            />
-          </div>
+            <label for="necessities"><input type="checkbox" id="necessities"> 被繼承人日常生活必需品及用品 (100 萬元)</label>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">
-              受被繼承人扶養之兄弟姊妹、祖父母 (每人 56 萬元)
-            </label>
-            <input
-              type="number"
-              name="siblings"
-              value={formData.siblings}
-              onChange={handleInputChange}
-              min="0"
-              className="w-full p-2 border rounded"
-              placeholder="輸入撫養親人人數"
-            />
-          </div>
+            <label for="tools"><input type="checkbox" id="tools"> 被繼承人之職業上工具 (56 萬元)</label>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">
-              重度以上身心障礙 (每人 693 萬元)
-            </label>
-            <input
-              type="number"
-              name="disabled"
-              value={formData.disabled}
-              onChange={handleInputChange}
-              min="0"
-              className="w-full p-2 border rounded"
-              placeholder="輸入殘障人數"
-            />
-          </div>
+            <button type="button" class="button" onclick="calculateTax()">計算總金額</button>
+        </form>
 
-          <div className="space-y-2">
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                name="funeral"
-                checked={formData.funeral}
-                onChange={handleInputChange}
-                className="mr-2"
-              />
-              <span className="text-sm">喪葬費扣除額 (138 萬元)</span>
-            </label>
-          </div>
+        <div class="result" id="result">總金額：<span id="totalAmount">0</span> 萬元</div>
 
-          <div className="space-y-2">
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                name="necessities"
-                checked={formData.necessities}
-                onChange={handleInputChange}
-                className="mr-2"
-              />
-              <span className="text-sm">被繼承人日常生活必需品及用品 (100 萬元)</span>
-            </label>
-          </div>
-
-          <div className="space-y-2">
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                name="tools"
-                checked={formData.tools}
-                onChange={handleInputChange}
-                className="mr-2"
-              />
-              <span className="text-sm">被繼承人之職業上工具 (56 萬元)</span>
-            </label>
-          </div>
-
-          <button
-            onClick={calculateTax}
-            className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded transition-colors"
-          >
-            計算總金額
-          </button>
-
-          <div className="mt-4 text-lg font-medium">
-            總金額：{total.toLocaleString()} 萬元
-          </div>
-
-          <div className="mt-8 text-xs text-gray-600 space-y-2">
-            <p className="font-medium">備註：</p>
-            <p className="relative pl-6 before:content-['一、'] before:absolute before:left-0">
-              依遺產及贈與稅法第18條規定：「被繼承人如為經常居住中華民國境內之中華民國國民，自遺產總額中減除免稅額 1,200萬元；其為軍警公教人員因執行職務死亡者，加倍計算。被繼承人如為經常居住中華民國境外之中華民國國民，或非中華民國國民，其減除免稅額比照前項規定辦理。」
-            </p>
-            <p className="relative pl-6 before:content-['二、'] before:absolute before:left-0">
-              依財政部110年11月24日台財稅字第11004670210號公告，繼承發生日(死亡日)在111年1月1日以後者，遺產稅免稅額為1,333萬元。
-            </p>
-            <p className="relative pl-6 before:content-['三、'] before:absolute before:left-0">
-              依98年1月21日總統令公布之修正後遺產及贈與稅法規定，繼承發生日（死亡日）在98年1月23日以後者，遺產稅免稅額為1,200萬元。
-            </p>
-          </div>
+        <br><br>
+        <div class="note remarks">
+            備註：<br>
+            一、依遺產及贈與稅法第18條規定：「被繼承人如為經常居住中華民國境內之中華民國國民，自遺產總額中減除免稅額 1,200萬元；其為軍警公教人員因執行職務死亡者，加倍計算。被繼承人如為經常居住中華民國境外之中華民國國民，或非中華民國國民，其減除免稅額比照前項規定辦理。」<br>
+            二、依財政部110年11月24日台財稅字第11004670210號公告，繼承發生日(死亡日)在111年1月1日以後者，遺產稅免稅額為1,333萬元。<br>
+            三、依98年1月21日總統令公布之修正後遺產及贈與稅法規定，繼承發生日（死亡日）在98年1月23日以後者，遺產稅免稅額為1,200萬元。
         </div>
-      </CardContent>
-    </Card>
-  );
-};
+    </div>
 
-export default EstateTaxCalculator;
+    <script>
+        function calculateTax() {
+            const exemption = parseInt(document.querySelector('input[name="exemption"]:checked').value);
+            const spouse = parseInt(document.getElementById('spouse').value) || 0;
+            const parent = parseInt(document.getElementById('parent').value) || 0;
+            const children = parseInt(document.getElementById('children').value) || 0;
+            const siblings = parseInt(document.getElementById('siblings').value) || 0;
+            const disabled = parseInt(document.getElementById('disabled').value) || 0;
+            const funeral = document.getElementById('funeral').checked ? 138 : 0;
+            const necessities = document.getElementById('necessities').checked ? 100 : 0;
+            const tools = document.getElementById('tools').checked ? 56 : 0;
+
+            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools;
+
+            document.getElementById('totalAmount').textContent = total.toLocaleString();
+        }
+    </script>
+</body>
+</html>
