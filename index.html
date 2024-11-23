@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>遺產稅快速計算器</title>
     <style>
         body {
@@ -10,9 +10,11 @@
             background-color: #f5f5f5;
             color: #333;
             padding: 20px;
+            margin: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 100%;
+            width: 90%;
             margin: 0 auto;
             padding: 20px;
             background-color: #ffffff;
@@ -23,12 +25,13 @@
             display: block;
             margin-bottom: 8px;
         }
-        input[type="number"] {
-            width: 50%;
+        input[type="number"], input[type="radio"] {
+            width: 100%;
             padding: 8px;
             margin-bottom: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
         }
         .button {
             padding: 10px 20px;
@@ -38,6 +41,8 @@
             cursor: pointer;
             font-size: 16px;
             border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
         }
         .button:hover {
             background-color: #e55347;
@@ -45,6 +50,17 @@
         .result {
             margin-top: 20px;
             font-size: 18px;
+        }
+        @media screen and (max-width: 600px) {
+            label {
+                font-size: 14px;
+            }
+            .button {
+                font-size: 14px;
+            }
+            input[type="number"] {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -97,7 +113,7 @@
 
             const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools;
 
-            document.getElementById('totalAmount').textContent = total;
+            document.getElementById('totalAmount').textContent = total.toLocaleString();
         }
     </script>
 </body>
