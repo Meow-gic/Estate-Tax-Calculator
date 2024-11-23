@@ -63,6 +63,11 @@
             margin-top: 20px;
             font-size: 18px;
         }
+        .remarks {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #555;
+        }
         @media screen and (max-width: 600px) {
             label {
                 font-size: 14px;
@@ -85,7 +90,7 @@
             <label class="radio-label"><input type="radio" name="exemption" value="2666"> 軍公教人員 (2,666 萬元)</label><br><br>
 
             <label for="spouse">配偶扣除額 (每人 553 萬元)</label>
-            <input type="number" id="spouse" placeholder="輸入配偶人數" min="0">
+            <input type="number" id="spouse" placeholder="輸入配偶人數" min="0" max="1">
 
             <label for="parent">父母扣除額 (每人 138 萬元)</label>
             <input type="number" id="parent" placeholder="輸入父母人數" min="0">
@@ -105,10 +110,19 @@
 
             <label for="tools"><input type="checkbox" id="tools"> 被繼承人之職業上工具 (56 萬元)</label>
 
+            <br><br>
+
             <button type="button" class="button" onclick="calculateTax()">計算總金額</button>
         </form>
 
         <div class="result" id="result">總金額：<span id="totalAmount">0</span> 萬元</div>
+
+        <div class="remarks">
+            備註：<br><br>
+            一、依遺產及贈與稅法第18條規定：「被繼承人如為經常居住中華民國境內之中華民國國民，自遺產總額中減除免稅額 1,200萬元；其為軍警公教人員因執行職務死亡者，加倍計算。被繼承人如為經常居住中華民國境外之中華民國國民，或非中華民國國民，其減除免稅額比照前項規定辦理。」<br>
+            二、依財政部110年11月24日台財稅字第11004670210號公告，繼承發生日(死亡日)在111年1月1日以後者，遺產稅免稅額為1,333萬元。<br>
+            三、依98年1月21日總統令公布之修正後遺產及贈與稅法規定，繼承發生日（死亡日）在98年1月23日以後者，遺產稅免稅額為1,200萬元。
+        </div>
     </div>
 
     <script>
