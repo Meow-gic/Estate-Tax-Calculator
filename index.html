@@ -49,10 +49,15 @@
             border: none;
             outline: none;
         }
-        #giftBeforeDeath {
-            width: 200px; /* 調整寬度 */
-            appearance: none; /* 移除大多數瀏覽器的上下箭頭 */
-            -moz-appearance: textfield; /* 移除 Firefox 的上下箭頭 */
+        /* 移除數字輸入框的上下箭頭 */
+        input[type="number"] {
+            -moz-appearance: textfield; /* 移除 Firefox 上的上下箭頭 */
+            appearance: none; /* 移除大部分瀏覽器上的上下箭頭 */
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
         .hidden-border {
             border: none;
@@ -137,7 +142,7 @@
 
             <label for="giftBeforeDeath">死亡前2年內贈與財產</label>
             <input type="number" id="giftBeforeDeath" placeholder="輸入金額" min="0">
-            <span>萬元</span>
+            <span>元</span>
 
             <label for="funeral"><input type="checkbox" id="funeral"> 喪葬費扣除額 (138 萬元)</label>
 
@@ -149,25 +154,6 @@
         </form>
 
         <div class="result" id="result">總金額：<span id="totalAmount">0</span> 萬元</div>
-
-        <br>
-        <div class="note remarks">
-            備註：
-            <table>
-                <tr>
-                    <td>一、</td>
-                    <td>依遺產及贈與稅法第18條規定：「被繼承人如為經常居住中華民國境內之中華民國國民，自遺產總額中減除免稅額 1,200萬元；其為軍警公教人員因執行職務死亡者，加倍計算。被繼承人如為經常居住中華民國境外之中華民國國民，或非中華民國國民，其減除免稅額比照前項規定辦理。」</td>
-                </tr>
-                <tr>
-                    <td>二、</td>
-                    <td>依財政部110年11月24日台財稅字第11004670210號公告，繼承發生日(死亡日)在111年1月1日以後者，遺產稅免稅額為1,333萬元。</td>
-                </tr>
-                <tr>
-                    <td>三、</td>
-                    <td>依98年1月21日總統令公布之修正後遺產及贈與稅法規定，繼承發生日（死亡日）在98年1月23日以後者，遺產稅免稅額為1,200萬元。</td>
-                </tr>
-            </table>
-        </div>
     </div>
 
     <script>
