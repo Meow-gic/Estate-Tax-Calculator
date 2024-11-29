@@ -5,114 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2024年遺產稅快速計算器</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #9CD9DF;
-            color: #333;
-            padding: 20px;
-            margin: 0;
-        }
-        .container {
-            max-width: 800px;
-            width: 90%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 26px;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #9CD9DF;
+        color: #333;
+        padding: 20px;
+        margin: 0;
+    }
+    .container {
+        max-width: 800px;
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        font-size: 26px;
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+    input[type="number"], .radio-label {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .radio-label {
+        width: auto;
+        padding: 0;
+        margin-bottom: 0;
+        display: inline-block;
+        margin-right: 15px;
+    }
+    input[type="radio"] {
+        width: auto;
+        padding: 0;
+        border: none;
+        outline: none;
+    }
+
+    /* 針對 giftBeforeDeath 輸入框的規則 */
+    #giftBeforeDeath {
+        width: 120px; /* 調整寬度 */
+        appearance: none; /* 移除大多數瀏覽器上的上下箭頭 */
+        -moz-appearance: textfield; /* 移除 Firefox 的上下箭頭 */
+        text-align: right; /* 讓數字靠右對齊 */
+        padding-right: 5px; /* 添加內距 */
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0; /* 移除上下箭頭對應的空間 */
+    }
+    .hidden-border {
+        border: none;
+        outline: none;
+    }
+    .button {
+        padding: 10px 20px;
+        background-color: #ff6347;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .button:hover {
+        background-color: #e55347;
+    }
+    .result {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    .remarks {
+        margin-top: 40px;
+        font-size: 13px;
+        color: #555;
+    }
+    .remarks table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .remarks td {
+        padding: 0.2em 0;
+        vertical-align: top;
+    }
+    .remarks td:first-child {
+        vertical-align: top;
+        white-space: nowrap;
+    }
+    .remarks td:last-child {
+        text-align: justify;
+    }
+    @media screen and (max-width: 600px) {
         label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        input[type="number"], .radio-label {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .radio-label {
-            width: auto;
-            padding: 0;
-            margin-bottom: 0;
-            display: inline-block;
-            margin-right: 15px;
-        }
-        input[type="radio"] {
-            width: auto;
-            padding: 0;
-            border: none;
-            outline: none;
-        }
-        /* 移除數字輸入框的上下箭頭 */
-        input[type="number"] {
-            -moz-appearance: textfield; /* 移除 Firefox 上的上下箭頭 */
-            appearance: none; /* 移除大部分瀏覽器上的上下箭頭 */
-        }
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .hidden-border {
-            border: none;
-            outline: none;
+            font-size: 14px;
         }
         .button {
-            padding: 10px 20px;
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
+            font-size: 14px;
         }
-        .button:hover {
-            background-color: #e55347;
+        input[type="number"] {
+            font-size: 14px;
         }
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        .remarks {
-            margin-top: 40px;
-            font-size: 13px;
-            color: #555;
-        }
-        .remarks table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .remarks td {
-            padding: 0.2em 0;
-            vertical-align: top;
-        }
-        .remarks td:first-child {
-            vertical-align: top;
-            white-space: nowrap;
-        }
-        .remarks td:last-child {
-            text-align: justify;
-        }
-        @media screen and (max-width: 600px) {
-            label {
-                font-size: 14px;
-            }
-            .button {
-                font-size: 14px;
-            }
-            input[type="number"] {
-                font-size: 14px;
-            }
-        }
-    </style>
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
