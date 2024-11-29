@@ -146,9 +146,7 @@
             <label for="disabled">重度以上身心障礙 (每人 693 萬元)</label>
             <input type="number" id="disabled" placeholder="輸入殘障人數" min="0">
 
-            <label for="giftBeforeDeath">死亡前2年內贈與財產</label>
-            <input type="number" id="giftBeforeDeath" placeholder="輸入金額" min="0">
-            <span>元</span>
+            <label for="giftBeforeDeath">死亡前2年內贈與財產</label><input type="number" id="giftBeforeDeath" placeholder="輸入金額" min="0"><span>萬元</span>
 
             <label for="funeral"><input type="checkbox" id="funeral"> 喪葬費扣除額 (138 萬元)</label>
 
@@ -192,11 +190,14 @@
             const funeral = document.getElementById('funeral').checked ? 138 : 0;
             const necessities = document.getElementById('necessities').checked ? 100 : 0;
             const tools = document.getElementById('tools').checked ? 56 : 0;
-
-            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + (siblings * 56) + (disabled * 693) + funeral + necessities + tools;
+            const giftBeforeDeath = parseInt(document.getElementById('giftBeforeDeath').value) || 0;
+            
+            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + 
+                          (siblings * 56) + (disabled * 693) + funeral + necessities + 
+                          tools + giftBeforeDeath;
 
             document.getElementById('totalAmount').textContent = total.toLocaleString();
-        }
+                    }
     </script>
 </body>
 </html>
