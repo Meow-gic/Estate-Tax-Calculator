@@ -118,12 +118,11 @@
         }
     }
 </style>
-
 </head>
 <body>
     <div class="container">
         <h1>2024年遺產稅快速計算器</h1>
-        <p style="color: #000000; background-color: #F7ECDF; padding: 10px; font-size: 15px; border-radius: 5px; border-left: 5px solid #E4232C;">
+        <p style="color: #000000; background-color: #f9f5f0; padding: 10px; font-size: 15px; border-radius: 5px; border-left: 5px solid #E4232C;">
             ※ 本試算表的計算結果僅供參考
         </p>
         <form id="taxForm">
@@ -146,7 +145,9 @@
             <label for="disabled">重度以上身心障礙 (每人 693 萬元)</label>
             <input type="number" id="disabled" placeholder="輸入殘障人數" min="0">
 
-            <label for="giftBeforeDeath">死亡前2年內贈與財產</label><input type="number" id="giftBeforeDeath" placeholder="輸入金額" min="0"><span>萬元</span>
+            <label for="giftBeforeDeath">死亡前2年內贈與財產</label>
+            <input type="number" id="giftBeforeDeath" placeholder="輸入金額" min="0">
+            <span>萬元</span>
 
             <label for="funeral"><input type="checkbox" id="funeral"> 喪葬費扣除額 (138 萬元)</label>
 
@@ -158,6 +159,7 @@
         </form>
 
         <div class="result" id="result">總金額：<span id="totalAmount">0</span> 萬元</div>
+    </div>
 
     <script>
         function calculateTax() {
@@ -167,18 +169,19 @@
             const children = parseInt(document.getElementById('children').value) || 0;
             const siblings = parseInt(document.getElementById('siblings').value) || 0;
             const disabled = parseInt(document.getElementById('disabled').value) || 0;
+            const giftBeforeDeath = parseInt(document.getElementById('giftBeforeDeath').value) || 0;
             const funeral = document.getElementById('funeral').checked ? 138 : 0;
             const necessities = document.getElementById('necessities').checked ? 100 : 0;
             const tools = document.getElementById('tools').checked ? 56 : 0;
-            const giftBeforeDeath = parseInt(document.getElementById('giftBeforeDeath').value) || 0;
-            
+
             const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + 
                           (siblings * 56) + (disabled * 693) + funeral + necessities + 
                           tools + giftBeforeDeath;
 
             document.getElementById('totalAmount').textContent = total.toLocaleString();
-                    }
+        }
     </script>
+
        <div class="note remarks">
     備註：
     <table>
