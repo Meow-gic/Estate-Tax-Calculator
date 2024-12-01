@@ -159,7 +159,26 @@
 
         <div class="result" id="result">總金額：<span id="totalAmount">0</span> 萬元</div>
 
-        <br>
+    <script>
+        function calculateTax() {
+            const exemption = parseInt(document.querySelector('input[name="exemption"]:checked').value);
+            const spouse = parseInt(document.getElementById('spouse').value) || 0;
+            const parent = parseInt(document.getElementById('parent').value) || 0;
+            const children = parseInt(document.getElementById('children').value) || 0;
+            const siblings = parseInt(document.getElementById('siblings').value) || 0;
+            const disabled = parseInt(document.getElementById('disabled').value) || 0;
+            const funeral = document.getElementById('funeral').checked ? 138 : 0;
+            const necessities = document.getElementById('necessities').checked ? 100 : 0;
+            const tools = document.getElementById('tools').checked ? 56 : 0;
+            const giftBeforeDeath = parseInt(document.getElementById('giftBeforeDeath').value) || 0;
+            
+            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + 
+                          (siblings * 56) + (disabled * 693) + funeral + necessities + 
+                          tools + giftBeforeDeath;
+
+            document.getElementById('totalAmount').textContent = total.toLocaleString();
+                    }
+    </script>
        <div class="note remarks">
     備註：
     <table>
@@ -181,25 +200,5 @@
         </tr>
     </table>
 </div>
-    <script>
-        function calculateTax() {
-            const exemption = parseInt(document.querySelector('input[name="exemption"]:checked').value);
-            const spouse = parseInt(document.getElementById('spouse').value) || 0;
-            const parent = parseInt(document.getElementById('parent').value) || 0;
-            const children = parseInt(document.getElementById('children').value) || 0;
-            const siblings = parseInt(document.getElementById('siblings').value) || 0;
-            const disabled = parseInt(document.getElementById('disabled').value) || 0;
-            const funeral = document.getElementById('funeral').checked ? 138 : 0;
-            const necessities = document.getElementById('necessities').checked ? 100 : 0;
-            const tools = document.getElementById('tools').checked ? 56 : 0;
-            const giftBeforeDeath = parseInt(document.getElementById('giftBeforeDeath').value) || 0;
-            
-            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + 
-                          (siblings * 56) + (disabled * 693) + funeral + necessities + 
-                          tools + giftBeforeDeath;
-
-            document.getElementById('totalAmount').textContent = total.toLocaleString();
-                    }
-    </script>
 </body>
 </html>
