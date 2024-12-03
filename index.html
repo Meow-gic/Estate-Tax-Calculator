@@ -93,6 +93,9 @@
         background-color: #9CD9DF; /* 修改背景顏色 */
         padding: 10px;
         border-radius: 8px;
+        max-width: 800px; /* 調整寬度 */
+        margin: 0 auto; /* 置中 */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 添加陰影 */
     }
     .remarks table {
         width: 100%;
@@ -187,4 +190,23 @@
     </div>
     <script>
         function calculateTax() {
-            const exemption = parseInt
+            const exemption = parseInt(document.querySelector('input[name="exemption"]:checked').value);
+            const spouse = parseInt(document.getElementById('spouse').value) || 0;
+            const parent = parseInt(document.getElementById('parent').value) || 0;
+            const children = parseInt(document.getElementById('children').value) || 0;
+            const siblings = parseInt(document.getElementById('siblings').value) || 0;
+            const disabled = parseInt(document.getElementById('disabled').value) || 0;
+            const funeral = document.getElementById('funeral').checked ? 138 : 0;
+            const necessities = document.getElementById('necessities').checked ? 100 : 0;
+            const tools = document.getElementById('tools').checked ? 56 : 0;
+            const giftBeforeDeath = parseInt(document.getElementById('giftBeforeDeath').value) || 0;
+            
+            const total = exemption + (spouse * 553) + (parent * 138) + (children * 56) + 
+                          (siblings * 56) + (disabled * 693) + funeral + necessities + 
+                          tools + giftBeforeDeath;
+
+            document.getElementById('totalAmount').textContent = total.toLocaleString();
+        }
+    </script>
+</body>
+</html>
