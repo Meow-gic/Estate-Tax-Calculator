@@ -123,6 +123,25 @@
             font-size: 14px;
         }
     }
+
+.remarks {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #262525;
+    background-color: #f0f0f0; /* 淺灰色背景 */
+    padding: 20px;
+    border-left: 5px solid #007BFF; /* 左邊加上藍色邊框 */
+    border-radius: 8px; /* 圓角邊框 */
+    max-width: 100%; /* 撐滿容器 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 添加陰影增強分隔感 */
+}
+.remarks h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #007BFF; /* 標題顏色 */
+}
+
+ 
 </style>
 
 </head>
@@ -165,30 +184,30 @@
 
         <div class="result" id="result">總金額：<span id="totalAmount">0</span> 萬元</div>
 
-         <br>
-            <div class="note remarks">
-                備註：
-                <table>
-                    <tr>
-                        <td>一、</td>
-                        <td>依遺產及贈與稅法第18條規定：「被繼承人如為經常居住中華民國境內之中華民國國民，自遺產總額中減除免稅額 1,200萬元；其為軍警公教人員因執行職務死亡者，加倍計算。被繼承人如為經常居住中華民國境外之中華民國國民，或非中華民國國民，其減除免稅額比照前項規定辦理。」</td>
-                    </tr>
-                    <tr>
-                        <td>二、</td>
-                        <td>依財政部110年11月24日台財稅字第11004670210號公告，繼承發生日（死亡日）在111年1月1日以後者，遺產稅免稅額為1,333萬元。</td>
-                    </tr>
-                    <tr>
-                        <td>三、</td>
-                        <td>依98年1月21日總統令公布之修正後遺產及贈與稅法規定，繼承發生日（死亡日）在98年1月23日以後者，遺產稅免稅額為1,200萬元。</td>
-                    </tr>
-                    <tr>
-                        <td>四、</td>
-                        <td>依民法繼承編第1148條之1：「繼承人在繼承開始前2年內，從被繼承人受有財產之贈與者，該財產視為其所得遺產；前項財產如已移轉或滅失，其價額，依贈與時之價值計算。」 </td>
-                    </tr>
-                </table>
-            </div>
+ <div class="remarks">
+    <h2>備註</h2>
+    <table>
+        <tr>
+            <td>一、</td>
+            <td>依遺產及贈與稅法第18條規定：「被繼承人如為經常居住中華民國境內之中華民國國民，自遺產總額中減除免稅額 1,200萬元；其為軍警公教人員因執行職務死亡者，加倍計算。被繼承人如為經常居住中華民國境外之中華民國國民，或非中華民國國民，其減除免稅額比照前項規定辦理。」</td>
+        </tr>
+        <tr>
+            <td>二、</td>
+            <td>依財政部110年11月24日台財稅字第11004670210號公告，繼承發生日（死亡日）在111年1月1日以後者，遺產稅免稅額為1,333萬元。</td>
+        </tr>
+        <tr>
+            <td>三、</td>
+            <td>依98年1月21日總統令公布之修正後遺產及贈與稅法規定，繼承發生日（死亡日）在98年1月23日以後者，遺產稅免稅額為1,200萬元。</td>
+        </tr>
+        <tr>
+            <td>四、</td>
+            <td>依民法繼承編第1148條之1：「繼承人在繼承開始前2年內，從被繼承人受有財產之贈與者，該財產視為其所得遺產；前項財產如已移轉或滅失，其價額，依贈與時之價值計算。」</td>
+        </tr>
+    </table>
+</div>
 
-       <script>
+   
+    <script>
         function calculateTax() {
             const exemption = parseInt(document.querySelector('input[name="exemption"]:checked').value);
             const spouse = parseInt(document.getElementById('spouse').value) || 0;
